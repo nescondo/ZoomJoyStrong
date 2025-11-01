@@ -25,7 +25,12 @@ end                       { return END; }
 [0-9]+                    { yylval.f = atof(yytext); return NUMBER; }
 [ \t\r\n]			;
 \"[^"']+\"                { yylval.s = yytext; return QSTRING; }
-[a-zA-Z0-9_-]+\.bmp     { yylval.s = yytext; return STRING; }
+[a-zA-Z0-9_-]+\.bmp       { yylval.s = yytext; return STRING; }
+
+\+                        { return PLUS; }
+\-                        { return SUB; }
+\*                        { return MULT; }
+\/                        { return DIV; }
 .			              { yyerror("Lexing Syntax error.\n"); } 
 
 %%

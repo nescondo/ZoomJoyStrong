@@ -62,7 +62,6 @@ void shutdown();
 %token COLOR
 %token CLEAR
 %token TURN
-%token LOOP
 %token MOVE
 %token NUMBER
 %token END
@@ -71,7 +70,7 @@ void shutdown();
 %token GOTO
 %token PLUS SUB MULT DIV
 %token<s> STRING QSTRING
-%type<f> expression expression_list NUMBER
+%type<f> expression expression_list term factor NUMBER 
 
 %%
 
@@ -81,6 +80,7 @@ statement_list:		statement
 		|	statement statement_list
 		;
 statement:		command SEP					{ prompt(); }
+        |   expression_list SEP         { printf("%d\n", (int)$1); prompt(); }
 		|	error '\n' 					{ yyerror; prompt(); }
 		;
 command:		PENUP						                { penup(); }
@@ -97,12 +97,16 @@ command:		PENUP						                { penup(); }
 expression_list:    expression
 		|	expression expression_list
 		;
-expression:		NUMBER PLUS expression				{ $$ = $1 + $3; }
-		|	NUMBER MULT expression				{ $$ = $1 * $3; }
-		|	NUMBER SUB expression				{ $$ = $1 - $3; }
-		|	NUMBER DIV expression				{ $$ = $1 / $3; }
-		|	NUMBER
+expression:		expression PLUS term	    { $$ = $1 + $3; }
+		|	expression SUB term				{ $$ = $1 - $3; }
+		|	term
 		;
+term:           term MULT factor            { $$ = $1 * $3; }
+        |   term DIV factor                 { $$ = $1 / $3; }
+        |   factor
+        ;
+factor:         NUMBER
+        ;
 
 %%
 
