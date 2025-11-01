@@ -44,10 +44,12 @@ void change_color(int r, int g, int b);
 void clear();
 void save(const char* path);
 void shutdown();
+double symbol_table[26];
 
 %}
 
 %union {
+    char var;
 	float f;
 	char* s;
 }
@@ -68,19 +70,22 @@ void shutdown();
 %token SAVE
 %token WHERE
 %token GOTO
-%token PLUS SUB MULT DIV
+%token PLUS SUB MULT DIV EQUALS
+%token<var> VARIABLE
 %token<s> STRING QSTRING
+%type<f> assignment
 %type<f> expression expression_list term factor NUMBER 
 
 %%
 
-program:		statement_list END				{ printf("Program complete."); shutdown(); exit(0); }
+program:		statement_list END				{ printf("Program complete.\n"); shutdown(); exit(0); }
 		;
 statement_list:		statement					
 		|	statement statement_list
 		;
 statement:		command SEP					{ prompt(); }
         |   expression_list SEP         { printf("%d\n", (int)$1); prompt(); }
+        |   assignment SEP              { prompt(); }
 		|	error '\n' 					{ yyerror; prompt(); }
 		;
 command:		PENUP						                { penup(); }
@@ -94,6 +99,9 @@ command:		PENUP						                { penup(); }
         |       WHERE                                       { printf("Current Coordinates: %d, %d\n", (int)x, (int)y); }
         |       GOTO expression expression                  { x = $2; y = $3; }
 		;
+assignment:     
+          VARIABLE EQUALS expression    { symbol_table[$1] = $3; }
+        ; 
 expression_list:    expression
 		|	expression expression_list
 		;
@@ -106,6 +114,7 @@ term:           term MULT factor            { $$ = $1 * $3; }
         |   factor
         ;
 factor:         NUMBER
+        |       VARIABLE                    { $$ = symbol_table[$1]; }
         ;
 
 %%

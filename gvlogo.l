@@ -26,11 +26,13 @@ end                       { return END; }
 [ \t\r\n]			;
 \"[^"']+\"                { yylval.s = yytext; return QSTRING; }
 [a-zA-Z0-9_-]+\.bmp       { yylval.s = yytext; return STRING; }
+[A-Z]                     { yylval.var = yytext[0] - 65; return VARIABLE; }
 
 \+                        { return PLUS; }
 \-                        { return SUB; }
 \*                        { return MULT; }
 \/                        { return DIV; }
+\=                        { return EQUALS; }
 .			              { yyerror("Lexing Syntax error.\n"); } 
 
 %%
