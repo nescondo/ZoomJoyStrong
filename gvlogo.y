@@ -68,6 +68,7 @@ void shutdown();
 %token END
 %token SAVE
 %token WHERE
+%token GOTO
 %token PLUS SUB MULT DIV
 %token<s> STRING QSTRING
 %type<f> expression expression_list NUMBER
@@ -91,6 +92,7 @@ command:		PENUP						                { penup(); }
         |       CLEAR                                       { clear(); }
         |       TURN expression                             { turn($2); }
         |       WHERE                                       { printf("Current Coordinates: %d, %d\n", (int)x, (int)y); }
+        |       GOTO expression expression                  { x = $2; y = $3; }
 		;
 expression_list:    expression
 		|	expression expression_list

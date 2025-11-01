@@ -17,6 +17,7 @@ print                     { return PRINT; }
 clear                     { return CLEAR; }
 turn                      { return TURN; }
 where                     { return WHERE; }
+goto                      { return GOTO; }
 end                       { return END; }
 
 
