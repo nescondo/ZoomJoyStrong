@@ -608,7 +608,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      20,   -20,   -21,   -21,   -17,    -3,    -3,   -13,    11,    -1,
+      20,   -20,   -21,   -21,   -18,    -3,    -3,   -13,    11,    -1,
        0,    19,   -21,   -21,    21,    -3,   -21,   -21,   -21,   -21,
      -21,   -21,    -3,    -3,    -3,    -3,    -3,   -21,   -21,   -21,
      -21,   -21
@@ -651,7 +651,7 @@ static const yytype_int8 yytable[] =
 
 static const yytype_int8 yycheck[] =
 {
-       6,     1,    22,    20,     4,     5,     6,    20,     8,    15,
+       6,     1,    22,    21,     4,     5,     6,    20,     8,    15,
       13,     0,    12,    14,    14,    15,    22,    23,    24,    25,
       26,     1,     3,    10,     4,     5,     6,    -1,     8,    -1,
       -1,    -1,    12,    -1,    -1,    15,    -1,    16,    17,    18,
@@ -663,7 +663,7 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,     1,     4,     5,     6,     8,    12,    15,    24,    25,
-      26,    27,    22,    20,    13,    28,    28,    20,     0,    14,
+      26,    27,    22,    21,    13,    28,    28,    20,     0,    14,
       25,     3,    16,    17,    18,    19,    28,    28,    28,    28,
       28,    28
 };
@@ -1297,7 +1297,7 @@ yyreduce:
 #line 1298 "gvlogo.tab.c"
     break;
 
-  case 11: /* command: PRINT STRING  */
+  case 11: /* command: PRINT QSTRING  */
 #line 88 "gvlogo.y"
                                                             { printf("%s\n", (yyvsp[0].s)); }
 #line 1304 "gvlogo.tab.c"

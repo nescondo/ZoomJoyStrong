@@ -85,7 +85,7 @@ command:		PENUP						                { penup(); }
         |       PENDOWN                                     { pendown(); }
         |       COLOR expression expression expression      { change_color($2,$3,$4); }
         |       MOVE expression                             { move($2); }
-        |       PRINT STRING                                { printf("%s\n", $2); }
+        |       PRINT QSTRING                               { printf("%s\n", $2); }
         |       SAVE STRING                                 { save($2); }
 		;
 expression_list:    expression
