@@ -16,6 +16,7 @@ save                      { return SAVE; }
 print                     { return PRINT; }
 clear                     { return CLEAR; }
 turn                      { return TURN; }
+where                     { return WHERE; }
 end                       { return END; }
 
 

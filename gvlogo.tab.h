@@ -67,12 +67,13 @@ extern int yydebug;
     NUMBER = 268,                  /* NUMBER  */
     END = 269,                     /* END  */
     SAVE = 270,                    /* SAVE  */
-    PLUS = 271,                    /* PLUS  */
-    SUB = 272,                     /* SUB  */
-    MULT = 273,                    /* MULT  */
-    DIV = 274,                     /* DIV  */
-    STRING = 275,                  /* STRING  */
-    QSTRING = 276                  /* QSTRING  */
+    WHERE = 271,                   /* WHERE  */
+    PLUS = 272,                    /* PLUS  */
+    SUB = 273,                     /* SUB  */
+    MULT = 274,                    /* MULT  */
+    DIV = 275,                     /* DIV  */
+    STRING = 276,                  /* STRING  */
+    QSTRING = 277                  /* QSTRING  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -86,7 +87,7 @@ union YYSTYPE
 	float f;
 	char* s;
 
-#line 90 "gvlogo.tab.h"
+#line 91 "gvlogo.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
