@@ -14,6 +14,8 @@ color                     { return COLOR; }
 move                      { return MOVE; }
 save                      { return SAVE; }
 print                     { return PRINT; }
+clear                     { return CLEAR; }
+turn                      { return TURN; }
 end                       { return END; }
 
 

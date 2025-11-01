@@ -87,6 +87,8 @@ command:		PENUP						                { penup(); }
         |       MOVE expression                             { move($2); }
         |       PRINT QSTRING                               { printf("%s\n", $2); }
         |       SAVE STRING                                 { save($2); }
+        |       CLEAR                                       { clear(); }
+        |       TURN expression                             { turn($2); }
 		;
 expression_list:    expression
 		|	expression expression_list
